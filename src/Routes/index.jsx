@@ -3,21 +3,36 @@ import { AuthPage } from "../pages/AuthPage"
 import { HomePageAdmin } from "../pages/HomeAdminPage";
 import PrivateRoute from "./PrivateRoute";
 
+const routes = [
+  {
+    path: "/",
+    element: <Navigate to={"/auth"}/>
+  },
+  {
+    path: "/auth",
+    element: <AuthPage />,
+  },
+  {
+    path: "/home-admin",
+    element: (
+      <PrivateRoute>
+        <HomePageAdmin/>
+      </PrivateRoute>
+    )
+  }
+]
+
 export const AppRoutes = () => {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/auth" element={<AuthPage />} />
-
-          <Route 
-            path="/home-admin" 
-            element={
-              <PrivateRoute>
-                <HomePageAdmin/>
-              </PrivateRoute>
-            }          
+          {routes.map((route, index) =>(
+            <Route
+              key={index}
+              path={route.path}
+              element={route.element}
             />
-            <Route path="/auth" element={<Navigate to={"/auth"}/>}/>
+          ))}
         </Routes>
       </BrowserRouter>
     );
