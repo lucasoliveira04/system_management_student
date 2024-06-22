@@ -13,6 +13,9 @@ export const AuthProvider = ({ children }) => {
         password
       });
       setAuthToken(response.data);
+
+      
+
       return true;
     } catch (error) {
       console.error("Login failed", error);

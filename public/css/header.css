@@ -1,0 +1,19 @@
+header{
+    background-color: #669bbc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+}
+
+header h2{
+    color: #003049;
+    font-size: 60px;
+    margin: 0%;
+    font-weight: 900;
+    margin-left: 20px;
+}
+
+.perfil img{
+    cursor: pointer;
+}

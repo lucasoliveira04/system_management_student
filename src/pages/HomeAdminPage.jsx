@@ -1,7 +1,9 @@
+import { HeaderComponent } from "../components/header"
+
 export const HomePageAdmin = () => {
     return(
         <div>
-            home page
+            <HeaderComponent/>
         </div>
     )
 }
