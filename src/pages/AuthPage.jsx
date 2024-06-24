@@ -10,6 +10,8 @@ export const AuthPage = () => {
   const [password, setPassword] = useState('');
   const { login } = useAuth();
   const [redirectToHomeAdmin, setRedirectToHomeAdmin] = useState(false);
+  const [loginError, setLoginError] = useState(false); 
+
 
   const handleLogin = async (e) => {
     e.preventDefault(); 
@@ -17,7 +19,7 @@ export const AuthPage = () => {
     if (success) {
       setRedirectToHomeAdmin(true);
     } else {
-      console.log('error');
+      setLoginError(true); 
     }
   };
 
@@ -42,14 +44,21 @@ export const AuthPage = () => {
               placeholder="Email / Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              className={loginError ? 'input-error' : ''} 
             />
             <input
               type="password"
               placeholder="Senha"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className={loginError ? 'input-error' : ''} 
             />
           </div>
+          {loginError && ( 
+            <div className="error-message">
+              Usuário ou senha incorretos. Por favor, tente novamente.
+            </div>
+          )}
           <div className="form-button-login-container">
             <Button
               type="submit"

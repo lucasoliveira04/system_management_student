@@ -97,3 +97,13 @@ button {
     color: white;
     -webkit-text-stroke: 2px blue;
 }
+
+.input-error{
+    border-color: red;
+}
+
+.error-message{
+    text-align: center;
+    color: red;
+    margin-top: 5px;
+}
