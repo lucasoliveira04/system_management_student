@@ -3,26 +3,57 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(null);
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem('username');
-    if (storedUsername) {
-      const fetchUserData = async () => {
-        try {
-          // Decodifica o username antes de enviar para a rota da API
-          const decodedUsername = atob(storedUsername);
-          const response = await axios.get(`http://localhost:8080/api/auth/user?username=${decodedUsername}`);
-          setUserData(response.data);
-        } catch (error) {
-          console.error('Failed to fetch user data:', error);
-        }
-      };
+    const checkTokenExpiration = () => {
+      const storedUsername = localStorage.getItem('username');
+      const storedLoginTime = localStorage.getItem('login');
+      const storedToken = localStorage.getItem('token');
 
-      fetchUserData();
-    }
+      if (storedUsername && storedLoginTime && storedToken) {
+        const loginTime = new Date(storedLoginTime);
+        const currentTime = new Date();
+        const tenSecondsInMilliseconds = 10 * 24 * 60 * 60 * 1000;
+
+        if (currentTime - loginTime > tenSecondsInMilliseconds) {
+          // Se passaram mais de 10 segundos, limpa o localStorage
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          localStorage.removeItem('login');
+          setAuthToken(null);
+          setUserData(null);
+          // Atualiza a página
+          window.location.reload();
+        } else {
+          // Se ainda não passaram 10 segundos, busca os dados do usuário
+          const fetchUserData = async () => {
+            try {
+              // Decodifica o username antes de enviar para a rota da API
+              const decodedUsername = atob(storedUsername);
+            
+              const response = await axios.get(`http://localhost:8080/api/auth/user?username=${decodedUsername}`, {
+              
+              });
+
+              setUserData(response.data);
+            } catch (error) {
+              console.error('Failed to fetch user data:', error);
+            }
+          };
+
+          fetchUserData();
+        }
+      }
+    };
+
+    // Verifica a expiração do token a cada segundo
+    const intervalId = setInterval(checkTokenExpiration, 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const login = async (username, password) => {
@@ -34,10 +65,12 @@ const AuthProvider = ({ children }) => {
 
       const token = response.data.lastLogin.token;
       const usernameStored = response.data.registerDto.username;
+      const login = response.data.lastLogin.dateLogin;
 
       // Codificar os valores antes de armazenar no localStorage
       localStorage.setItem('token', btoa(token));
       localStorage.setItem('username', btoa(usernameStored));
+      localStorage.setItem('login', login);
 
       setAuthToken(token);
       setUserData(response.data);
@@ -52,6 +85,7 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem('login');
     setAuthToken(null);
     setUserData(null);
   };

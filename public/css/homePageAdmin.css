@@ -1,5 +1,31 @@
-.container-admin{
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.home-page-admin {
     display: flex;
-    justify-content: space-between;
-    border: 1px solid red;
+    flex-direction: column;
+    height: 100%;
+}
+
+.container-admin {
+    display: flex;
+    flex-grow: 1; 
+    
+}
+
+.actions-container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 20%; 
+}
+
+.table-container {
+    display: flex;
+    flex-grow: 1; 
+}
+.container-admin{
+    padding: 10px;
 }

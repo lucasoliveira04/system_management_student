@@ -10,25 +10,6 @@ const ProfileCard = ({ isOpen, onClose }) => {
   const { userData, logout } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const storedusername = localStorage.getItem("username");
-        console.log("Stored username:", storedusername);
-        if (userData) {
-          const response = await axios.get(
-            `http://localhost:8080/api/auth/user?username=${storedusername}`
-          );
-          console.log("User data:", response.data);
-        }
-      } catch (error) {
-        console.error("Failed to fetch user data:", error);
-      }
-    };
-
-    fetchUserData();
-  }, [userData]);
-
   const maskData = (value, type) => {
     if (!value) return "";
 
