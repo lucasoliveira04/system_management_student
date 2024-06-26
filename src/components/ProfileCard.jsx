@@ -1,14 +1,28 @@
+import React, { useEffect } from 'react';
 import perfil from "../../public/imgs/perfil.png";
 import "../../public/css/profileCard.css";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import axios from "axios";
 
-// eslint-disable-next-line react/prop-types
 const ProfileCard = ({ isOpen, onClose }) => {
   const { userData, logout } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.keyCode === 27) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEsc);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, [isOpen, onClose]);
 
   const maskData = (value, type) => {
     if (!value) return "";

@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom"
+import { RedirectToPage } from "../components/redirectPage"
 
 const PrivateRoute = ({children}) => {
     if (localStorage.getItem("token")){
@@ -6,7 +6,7 @@ const PrivateRoute = ({children}) => {
     } 
 
     if (!localStorage.getItem("token")){
-        return <Navigate to={"/auth"}/>
+        return <RedirectToPage url={"/auth"}/>
     }
 }
 

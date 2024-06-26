@@ -10,6 +10,7 @@ export const HeaderComponent = () => {
         setIsProfileOpen(!isProfileOpen)
     }
 
+
     const handleCloseProfile = () => {
         setIsProfileOpen(false)
     }
