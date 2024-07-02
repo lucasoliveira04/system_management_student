@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
       if (storedUsername && storedLoginTime && storedToken) {
         const loginTime = new Date(storedLoginTime);
         const currentTime = new Date();
-        const tenSecondsInMilliseconds = 10 * 24 * 60 * 60 * 1000;
+        const tenSecondsInMilliseconds = 16 * 24 * 60 * 60 * 1000;
 
         if (currentTime - loginTime > tenSecondsInMilliseconds) {
           // Se passaram mais de 10 segundos, limpa o localStorage

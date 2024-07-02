@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet";
 import "../../public/css/auth.css";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { Navigate } from "react-router-dom";
 import { FormAuth } from "../components/formAuth";
 import { RedirectToPage } from "../components/redirectPage";
 
@@ -12,7 +11,6 @@ export const AuthPage = () => {
   const { login } = useAuth();
   const [redirectToHomeAdmin, setRedirectToHomeAdmin] = useState(false);
   const [loginError, setLoginError] = useState(false); 
-
 
   const handleLogin = async (e) => {
     e.preventDefault(); 
