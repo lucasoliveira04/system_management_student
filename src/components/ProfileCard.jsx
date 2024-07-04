@@ -1,9 +1,12 @@
+
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect } from 'react';
 import perfil from "../../public/imgs/perfil.png";
 import "../../public/css/profileCard.css";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 const ProfileCard = ({ isOpen, onClose }) => {
   const { userData, logout } = useAuth();
   const navigate = useNavigate();

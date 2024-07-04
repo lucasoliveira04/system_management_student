@@ -10,7 +10,6 @@ export const TableStudents = () => {
             try {
                 const response = await axios.get("http://localhost:8080/view-all-data/user");
                 setUsers(response.data);
-                console.log(response.data);
             } catch (error) {
                 console.error(error);
             }

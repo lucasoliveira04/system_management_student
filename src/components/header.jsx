@@ -16,7 +16,7 @@ export const HeaderComponent = () => {
     }
     return(
         <header>
-            <h2>Nome escola</h2>
+            <h2>Escola Jorgina</h2>
             <div className="perfil" onClick={handleProfileClick}>
                 <img 
                     src={perfil} 

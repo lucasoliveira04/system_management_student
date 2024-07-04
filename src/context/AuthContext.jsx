@@ -35,13 +35,13 @@ const AuthProvider = ({ children }) => {
               // Decodifica o username antes de enviar para a rota da API
               const decodedUsername = atob(storedUsername);
             
-              const response = await axios.get(`http://localhost:8080/api/auth/user?username=${decodedUsername}`, {
+              const response = await axios.get(`http://localhost:8080/auth/user?username=${decodedUsername}`, {
               
               });
 
               setUserData(response.data);
             } catch (error) {
-              console.error('Failed to fetch user data:', error);
+              error
             }
           };
 
@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/', {
+      const response = await axios.post('http://localhost:8080/auth/', {
         username,
         password
       });
@@ -77,7 +77,7 @@ const AuthProvider = ({ children }) => {
 
       return true;
     } catch (error) {
-      console.error('Login failed', error);
+     error
       return false;
     }
   };

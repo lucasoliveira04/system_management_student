@@ -16,10 +16,9 @@ export const HomePageAdmin = () => {
         let encryptedToken   = localStorage.getItem('token')
         if (encryptedToken ){
             const token = atob(encryptedToken)
-            console.log("Seu token: "+ token)
             
             try{
-                const response = await fetch('http://localhost:8080/api/auth/verify-token', {
+                const response = await fetch('http://localhost:8080/auth/verify-token', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -27,17 +26,15 @@ export const HomePageAdmin = () => {
                 })
 
                 if (response.ok){
-                    console.log("Token is valid: ", response)
+                    response
                 } else {
-                    console.log("Token verification failed with status: ", response.status)
+                   response.status
                     logout()
                 }
             } catch (error){
                 console.error(error);
                 logout()
             }
-        } else {
-            console.log("No token found")
         }
 
         
