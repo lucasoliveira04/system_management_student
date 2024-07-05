@@ -1,5 +1,6 @@
 import "../../public/css/auth.css";
-import { FormComponent } from "./formComponent.jsx";
+import { FormComponent } from "../components/formComponent.jsx";
+import {MessageComponent} from "../components/MessageComponent.jsx";
 
 /**
  * Componente de autenticação de formulário.
@@ -79,9 +80,11 @@ export const FormAuth = ({
                 buttonsConfig={buttonsConfig}
             />
             {loginError && (
-                <div className="error-message">
-                    Usuário ou senha incorretos. Por favor, tente novamente.
-                </div>
+                <MessageComponent
+                    message={"Usuário ou senha incorretos. Por favor, tente novamente."}
+                    typeMessage={"error"}
+                    classnameLabel={"error-message"}
+                />
             )}
         </div>
     );

@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(null);
   const [userData, setUserData] = useState(null);

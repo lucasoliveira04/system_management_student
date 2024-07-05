@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import "../../public/css/auth.css";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { FormAuth } from "../components/formAuth";
+import { FormAuth } from "../containers/formAuth.jsx";
 import { RedirectToPage } from "../components/redirectPage";
 
 export const AuthPage = () => {
