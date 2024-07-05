@@ -42,7 +42,9 @@ export const HomePageAdmin = () => {
 
     return(
         <div>
-            <HeaderComponent/>
+            <HeaderComponent
+                title={"Escola Jorgina"}
+            />
             <div className="container-admin">
                 <div className="actions-container">
                     <ActionsToStudents/>
