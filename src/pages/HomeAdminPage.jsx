@@ -4,6 +4,7 @@ import "../../public/css/homePageAdmin.css"
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import {NotFoundData} from "../containers/NotFoundData.jsx";
+import {Helmet} from "react-helmet";
 
 export const HomePageAdmin = () => {
     const {logout} = useAuth()
