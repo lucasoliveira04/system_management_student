@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import perfil from "../../public/imgs/perfil.png";
 import "../../public/css/profileCard.css";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types

@@ -1,6 +1,5 @@
 import { HeaderComponent } from "../components/header";
-import { TableStudents } from "../components/tableStudents";
-import { ActionsToStudents} from "../components/actionsTableToStudents"
+import { TableStudents } from "../containers/tableStudents.jsx";
 import "../../public/css/homePageAdmin.css"
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
@@ -47,7 +46,7 @@ export const HomePageAdmin = () => {
             />
             <div className="container-admin">
                 <div className="actions-container">
-                    <ActionsToStudents/>
+
                 </div>
                 <div className="table-container">
                     <TableStudents/>
