@@ -1,8 +1,9 @@
-import { HeaderComponent } from "../components/header";
+import { HeaderComponent } from "../containers/header.jsx";
 import { TableStudents } from "../containers/tableStudents.jsx";
 import "../../public/css/homePageAdmin.css"
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import {NotFoundData} from "../containers/NotFoundData.jsx";
 
 export const HomePageAdmin = () => {
     const {logout} = useAuth()
@@ -38,7 +39,6 @@ export const HomePageAdmin = () => {
 
         
     }
-
     return(
         <div>
             <HeaderComponent
