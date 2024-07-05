@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "../../public/css/auth.css";
 import { FormComponent } from "./formComponent.jsx";
 
