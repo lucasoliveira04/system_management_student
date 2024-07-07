@@ -81,6 +81,7 @@ button {
 .btn-secondary {
     background-color: #6c757d;
     border: none;
+    color: white;
 }
 
 .btn-secondary:hover {
