@@ -11,7 +11,7 @@ export const MessageComponent = ({
             baseClass += ' alert-danger'
         } else if(typeMessage == 'success'){
             baseClass += ' alert-success'
-        }
+        } else if (typeMessage == 'info'){}
         return `${baseClass} ${classname} || ''`
     }
 

@@ -1,7 +1,8 @@
 import {Navigate, Route, Routes} from "react-router-dom";
-import {AuthPage} from "../pages/AuthPage";
 import {HomePageAdmin} from "../pages/HomeAdminPage";
 import PrivateRoute from "./PrivateRoute";
+import {NotFoundPage} from "../pages/NotFoundPage.jsx";
+import {AuthPage} from "../pages/AuthPage.jsx";
 
 const routes = [
     {
@@ -10,7 +11,7 @@ const routes = [
     },
     {
         path: "/auth",
-        element: <AuthPage />,
+        element: <AuthPage/>,
     },
     {
         path: "/home-admin",
@@ -19,6 +20,14 @@ const routes = [
                 <HomePageAdmin />
             </PrivateRoute>
         ),
+    },
+    {
+       path: "/notfound",
+        element: (
+            <PrivateRoute>
+                <NotFoundPage />
+            </PrivateRoute>
+        )
     },
 ];
 

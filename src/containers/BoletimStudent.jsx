@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {SpinnerLoading} from "../components/SpinnerLoading.jsx";
 
 export const BoletimStudent = ({ idStudent, onClose }) => {
     const [studentData, setStudentData] = useState(null);
@@ -18,7 +19,7 @@ export const BoletimStudent = ({ idStudent, onClose }) => {
     }, [idStudent]);
 
     if (!studentData) {
-        return <div>Loading...</div>;
+       <SpinnerLoading/>
     }
 
     return (
