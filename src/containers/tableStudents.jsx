@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../../public/css/tableStudents.css";
+import { BoletimStudent } from "./BoletimStudent.jsx";
 
 export const TableStudents = () => {
     const [users, setUsers] = useState([]);
+    const [selectedStudentId, setSelectedStudentId] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -50,11 +52,17 @@ export const TableStudents = () => {
                         <td className={user.dataStudentsDto[0].result < 7 ? 'reprovado' : 'aprovado'}>
                             {user.dataStudentsDto[0].result < 7 ? "Reprovado" : "Aprovado"}
                         </td>
-                        <td style={{cursor: "pointer"}}>Obter Histórico</td>
+                        <td style={{ cursor: "pointer" }}
+                            onClick={() => {
+                                console.log("clicked", user.id);
+                                setSelectedStudentId(user.id);
+                            }}
+                        >Obter Histórico</td>
                     </tr>
                 ))}
                 </tbody>
             </table>
+            {selectedStudentId && <BoletimStudent idStudent={selectedStudentId} onClose={() => setSelectedStudentId(null)} />}
         </div>
     );
 };
