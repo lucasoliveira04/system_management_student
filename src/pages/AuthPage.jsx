@@ -28,10 +28,6 @@ export const AuthPage = () => {
 
   return (
     <div className="container">
-      <Helmet>
-        <title>Login</title>
-      </Helmet>
-
       <FormAuth
         onSubmit={handleLogin}
         username={username}

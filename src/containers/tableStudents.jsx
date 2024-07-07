@@ -1,6 +1,6 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import "../../public/css/tableStudents.css"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import "../../public/css/tableStudents.css";
 
 export const TableStudents = () => {
     const [users, setUsers] = useState([]);
@@ -23,36 +23,36 @@ export const TableStudents = () => {
     const aprovados = filteredUsers.filter(user => user.dataStudentsDto[0].result >= 7);
     const reprovados = filteredUsers.filter(user => user.dataStudentsDto[0].result < 7);
 
-    const combinedUser = [...aprovados, ...reprovados]
+    const combinedUser = [...aprovados, ...reprovados];
+
+    const columns = ["ID", "Nome", "CPF", "RG", "Email", "Media final", "Situação", "Histórico"];
+    const numColumns = columns.length;
 
     return (
         <div className="table-container">
             <table className="students-table">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
-                        <th>RG</th>
-                        <th>Email</th>
-                        <th>Media final</th>
-                        <th>Situação</th>
-                    </tr>
+                <tr>
+                    {columns.map((column, index) => (
+                        <th key={index}>{column}</th>
+                    ))}
+                </tr>
                 </thead>
                 <tbody>
-                    {combinedUser.map(user => (
-                        <tr key={user.id}>
-                            <td>{user.id}</td>
-                            <td>{user.name}</td>
-                            <td>{user.cpf}</td>
-                            <td>{user.rg}</td>
-                            <td>{user.email}</td>
-                            <td>{user.dataStudentsDto[0].result}</td>
-                            <td className={user.dataStudentsDto[0].result < 7 ? 'reprovado' : 'aprovado'}>
-                                {user.dataStudentsDto[0].result < 7 ? "Reprovado" : "Aprovado"}
-                            </td>
-                        </tr>
-                    ))}
+                {combinedUser.map((user) => (
+                    <tr key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.name}</td>
+                        <td>{user.cpf}</td>
+                        <td>{user.rg}</td>
+                        <td>{user.email}</td>
+                        <td>{user.dataStudentsDto[0].result}</td>
+                        <td className={user.dataStudentsDto[0].result < 7 ? 'reprovado' : 'aprovado'}>
+                            {user.dataStudentsDto[0].result < 7 ? "Reprovado" : "Aprovado"}
+                        </td>
+                        <td style={{cursor: "pointer"}}>Obter Histórico</td>
+                    </tr>
+                ))}
                 </tbody>
             </table>
         </div>
