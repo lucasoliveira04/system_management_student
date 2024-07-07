@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import "../../public/css/auth.css";
 import { FormComponent } from "../components/formComponent.jsx";
 import {MessageComponent} from "../components/MessageComponent.jsx";
@@ -22,6 +23,19 @@ export const FormAuth = ({
                              setPassword,
                              loginError,
                          }) => {
+
+    const [showError, setShowError] = useState(false);
+
+    useEffect(() => {
+        if (loginError) {
+            setShowError(true);
+            const timer = setTimeout(() => {
+                setShowError(false);
+            }, 10000); // 10 segundos
+
+            return () => clearTimeout(timer);
+        }
+    }, [loginError]);
 
     const handleUsernameChange = (e) => {
         const value = e.target.value.trim();
@@ -65,7 +79,7 @@ export const FormAuth = ({
         {
             type: 'button',
             label: 'Recuperar Senha',
-            className: 'btn btn-secondary',
+            className: 'button-recuperar-senha btn btn-secondary',
             onClick: () => console.log('Recuperar Senha clicked')
         }
     ];
@@ -79,7 +93,7 @@ export const FormAuth = ({
                 inputsConfig={inputsConfig}
                 buttonsConfig={buttonsConfig}
             />
-            {loginError && (
+            {showError && (
                 <MessageComponent
                     message={"Usuário ou senha incorretos. Por favor, tente novamente."}
                     typeMessage={"error"}
