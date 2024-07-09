@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import "../../public/css/auth.css";
 import { FormComponent } from "../components/formComponent.jsx";
 import {MessageComponent} from "../components/MessageComponent.jsx";
@@ -31,21 +31,16 @@ export const FormAuth = ({
             setShowError(true);
             const timer = setTimeout(() => {
                 setShowError(false);
-            }, 10000); // 10 segundos
+            }, 10000); 
 
             return () => clearTimeout(timer);
         }
     }, [loginError]);
 
-    const handleUsernameChange = (e) => {
+    const handleChange = (setter) => (e) => {
         const value = e.target.value.trim();
-        return setUsername(value);
-    };
-
-    const handlePasswordChange = (e) => {
-        const value = e.target.value.trim();
-        return setPassword(value);
-    };
+        setter(value);
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -57,14 +52,14 @@ export const FormAuth = ({
             type: "text",
             placeholder: "Email / Username",
             value: username,
-            onChange: handleUsernameChange,
+            onChange: handleChange(setUsername),
             className: loginError ? "input-error" : "",
         },
         {
             type: "password",
             placeholder: "Senha",
             value: password,
-            onChange: handlePasswordChange,
+            onChange: handleChange(setPassword),
             className: loginError ? "input-error" : "",
         }
     ];

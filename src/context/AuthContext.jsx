@@ -23,6 +23,7 @@ const AuthProvider = ({ children }) => {
           localStorage.removeItem('token');
           localStorage.removeItem('username');
           localStorage.removeItem('login');
+          localStorage.removeItem('email');
           setAuthToken(null);
           setUserData(null);
           // Atualiza a página
@@ -65,11 +66,13 @@ const AuthProvider = ({ children }) => {
       const token = response.data.lastLogin.token;
       const usernameStored = response.data.registerDto.username;
       const login = response.data.lastLogin.dateLogin;
+      const email = response.data.email
 
       // Codificar os valores antes de armazenar no localStorage
       localStorage.setItem('token', btoa(token));
       localStorage.setItem('username', btoa(usernameStored));
       localStorage.setItem('login', login);
+      localStorage.setItem('email', email)
 
       setAuthToken(token);
       setUserData(response.data);

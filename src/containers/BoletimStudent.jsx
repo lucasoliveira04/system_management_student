@@ -19,8 +19,27 @@ export const BoletimStudent = ({ idStudent, onClose }) => {
     }, [idStudent]);
 
     if (!studentData) {
-       <SpinnerLoading/>
+       return <SpinnerLoading/>
     }
+
+    if (!studentData.dataStudentsDto){
+        return <SpinnerLoading/>
+    }
+
+    const columns = ["ID", "Português", "Matemática", "História", "Geográfia", "Fisica", "Media Final", "Bimestre", "Ano"]
+    const results_data = studentData.dataStudentsDto.map((record) => (
+        <tr key={record.id}>
+            <td>{record.id}</td>
+            <td>{record.nota_1}</td>
+            <td>{record.nota_2}</td>
+            <td>{record.nota_3}</td>
+            <td>{record.nota_4}</td>
+            <td>{record.nota_5}</td>
+            <td>{record.mean_result_final}</td>
+            <td>{record.bimestre}</td>
+            <td>{record.ano}</td>
+        </tr>
+    ))
 
     return (
         <div className="boletim-container">
@@ -29,31 +48,13 @@ export const BoletimStudent = ({ idStudent, onClose }) => {
             <table className="table table-striped table-bordered">
                 <thead className="thead-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Nota 1</th>
-                    <th>Nota 2</th>
-                    <th>Nota 3</th>
-                    <th>Nota 4</th>
-                    <th>Nota 5</th>
-                    <th>Média Final</th>
-                    <th>Bimestre</th>
-                    <th>Ano</th>
+                    {columns.map((column, index) => (
+                        <th key={index}>{column}</th>
+                    ))}
                 </tr>
                 </thead>
                 <tbody>
-                {studentData.dataStudentsDto.map((record) => (
-                    <tr key={record.id}>
-                        <td>{record.id}</td>
-                        <td>{record.nota_1}</td>
-                        <td>{record.nota_2}</td>
-                        <td>{record.nota_3}</td>
-                        <td>{record.nota_4}</td>
-                        <td>{record.nota_5}</td>
-                        <td>{record.mean_result_final}</td>
-                        <td>{record.bimestre}</td>
-                        <td>{record.ano}</td>
-                    </tr>
-                ))}
+                    {results_data}
                 </tbody>
             </table>
         </div>

@@ -3,8 +3,6 @@ import { TableStudents } from "../containers/tableStudents.jsx";
 import "../../public/css/homePageAdmin.css"
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import {NotFoundData} from "../containers/NotFoundData.jsx";
-import {Helmet} from "react-helmet";
 
 export const HomePageAdmin = () => {
     const {logout} = useAuth()
@@ -17,15 +15,16 @@ export const HomePageAdmin = () => {
         let encryptedToken   = localStorage.getItem('token')
         if (encryptedToken ){
             const token = atob(encryptedToken)
-            
+         
             try{
                 const response = await fetch('http://localhost:8080/auth/verify-token', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
-                })
 
+                })
+                
                 if (response.ok){
                     response
                 } else {
