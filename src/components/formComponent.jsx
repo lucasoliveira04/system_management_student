@@ -10,7 +10,8 @@
  */
 export const FormComponent = ({
                                   inputsConfig,
-                                  buttonsConfig
+                                  buttonsConfig,
+                                  onSubmit
                               }) => {
 
     /**
@@ -50,7 +51,7 @@ export const FormComponent = ({
     };
 
     return (
-        <form>
+        <form onSubmit={onSubmit}>
             <div className="form-inputs-container">
                 {renderInputs()}
             </div>

@@ -75,7 +75,6 @@ const ProfileCard = ({ isOpen, onClose }) => {
                   Senha</h1>
               </div>
               <FormAlterarSenha
-                  email={email}
                   setEmail={setEmail}
                   password={password}
                   setPassword={setPassword}

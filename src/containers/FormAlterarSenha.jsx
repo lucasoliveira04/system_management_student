@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import FormComponent from "../components/formComponent.jsx";
 import "../../public/css/form-recuperar-senha.css";
 import { MessageComponent } from "../components/MessageComponent.jsx";
 import axios from 'axios';
 
-export const FormAlterarSenha = ({
-                                     email, onSubmit,
-                                 }) => {
+export const FormAlterarSenha = ({onSubmit}) => {
     const [isValidEmail, setIsValidEmail] = useState(false);
+    const [email, setEmail] = useState('');
     const [isError, setIsError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [passwordChanged, setPasswordChanged] = useState(false);
 
@@ -48,10 +48,22 @@ export const FormAlterarSenha = ({
             onSubmit();
         } catch (error) {
             console.error("Erro ao alterar senha:", error);
+            if (error.response && error.response.status === 400){
+                setErrorMessage(error.response.data.message);
+            } else {
+                setErrorMessage('Erro ao alterar senha');
+            }
+            setIsError(true)
         }
     };
 
     const inputConfig = [
+        {
+            type: "text",
+            placeholder: "Email",
+            value: email,
+            onChange: handleChange(setEmail),
+        },
         {
             type: "password",
             placeholder: "Nova senha",
