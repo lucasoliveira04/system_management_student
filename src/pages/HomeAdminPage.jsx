@@ -9,6 +9,7 @@ export const HomePageAdmin = () => {
 
     useEffect(() => {
         verificarBearer()
+        verificarDispositivos()
     }, [])
 
     async function verificarBearer(){
@@ -36,8 +37,13 @@ export const HomePageAdmin = () => {
                 logout()
             }
         }
+    }
 
-        
+    function verificarDispositivos(){
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+        if(isMobile){
+            alert("Esta página só é acessível por computadores.");
+        }
     }
     return(
         <div>
