@@ -44,7 +44,7 @@ export const BoletimStudent = ({ idStudent, onClose }) => {
     return (
         <div className="boletim-container">
             <button className="close-button btn btn-danger" onClick={onClose}>X</button>
-            <h2>Histórico do Aluno: {studentData.name}</h2>
+            <h2>Histórico do Aluno: {studentData.name} | <u>{studentData.cpf}</u> </h2>
             <table className="table table-striped table-bordered">
                 <thead className="thead-dark">
                 <tr>

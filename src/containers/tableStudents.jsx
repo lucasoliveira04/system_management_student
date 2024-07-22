@@ -54,7 +54,6 @@ export const TableStudents = () => {
                         </td>
                         <td style={{ cursor: "pointer" }}
                             onClick={() => {
-                                console.log("clicked", user.id);
                                 setSelectedStudentId(user.id);
                             }}
                         >Obter Histórico</td>
